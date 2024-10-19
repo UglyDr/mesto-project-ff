@@ -83,6 +83,7 @@ formAdd.addEventListener('submit', (evt) => {
         alt: addNameInput.value 
     }; 
     cardList.prepend(createCard(newCardData, deleteCard));
+    closePopup(popupAdd);
 });
 
 
