@@ -1,36 +1,40 @@
-import {cardTemplate, handleImageClick} from "../index.js";
+import { openPopup } from "./modal.js";
+
+const cardTemplate = document.querySelector("#card-template").content;
 // @todo: функция создания карточки
-function createCard(cardData, deleteCard) {
-    const cardElement = cardTemplate.querySelector('.places__item').cloneNode(true);
-    const cardImage =  cardElement.querySelector('.card__image');
-    const cardTitle = cardElement.querySelector('.card__title');
-  
-    cardTitle.textContent = cardData.name;
-    cardImage.src = cardData.link;
-    cardImage.alt = cardData.name;
+function createCard(cardData, { deleteCard, onLike, handleImageClick }) {
+  const cardElement = cardTemplate
+    .querySelector(".places__item")
+    .cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
 
-    const deleteButton = cardElement.querySelector('.card__delete-button');
-    deleteButton.addEventListener('click', () => deleteCard(cardElement));
+  cardTitle.textContent = cardData.name;
+  cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
 
-    cardElement.querySelector(".card__like-button").addEventListener("click", onLike);
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  deleteButton.addEventListener("click", () => deleteCard(cardElement));
 
-    cardImage.addEventListener("click", () => {
-        handleImageClick(cardImage, cardTitle);
-    });
+  cardElement
+    .querySelector(".card__like-button")
+    .addEventListener("click", onLike);
 
-    return cardElement;
+  cardImage.addEventListener("click", () => {
+    handleImageClick(cardImage, cardTitle);
+  });
+
+  return cardElement;
 }
 
 // @todo: Вывести карточки на страницу
-function deleteCard (cardElement) {
-    cardElement.remove();
+function deleteCard(cardElement) {
+  cardElement.remove();
 }
 
 //@todo: функция установки Like
-function onLike(evt){
-    evt.target.classList.toggle("card__like-button_is-active");
+function onLike(evt) {
+  evt.target.classList.toggle("card__like-button_is-active");
 }
 
-
-
-export {createCard,deleteCard,onLike}
+export { createCard, deleteCard, onLike };
