@@ -3,8 +3,7 @@ import { initialCards } from "./scripts/cards.js";
 import { createCard, deleteCard, onLike } from "./scripts/card.js";
 import { openPopup, closePopup } from "./scripts/modal.js";
 
-// @todo: Темплейт карточки
-export const cardTemplate = document.querySelector("#card-template").content;
+
 // @todo: DOM узлы
 const mainContainer = document.querySelector(".content");
 const cardList = mainContainer.querySelector(".places__list");
@@ -81,7 +80,7 @@ formAdd.addEventListener("submit", (evt) => {
     alt: addNameInput.value,
   };
   evt.target.reset();
-  cardList.prepend(createCard(newCardData, deleteCard));
+  cardList.prepend(createCard(newCardData,  { deleteCard, onLike, handleImageClick }));
   closePopup(popupAdd);
 });
 
