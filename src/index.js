@@ -114,8 +114,7 @@ closeImageBtn.addEventListener("click", () => {
 
 formEdit.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileDesc.textContent = descInput.value;
+
 
   const newName = nameInput.value;
   const newDesc = descInput.value;
@@ -136,9 +135,6 @@ formEdit.addEventListener("submit", function (evt) {
     .finally(() => {
       formEdit.querySelector(".popup__button").textContent = "Сохранить";
     });
-  clearValidation(formEdit, validationConfig);
-
-  closePopup(popupEdit);
 });
 
 formAdd.addEventListener("submit", (evt) => {
@@ -166,10 +162,6 @@ formAdd.addEventListener("submit", (evt) => {
     .finally(() => {
       formAdd.querySelector(".popup__button").textContent = "Сохранить";
     });
-
-  evt.target.reset();
-  // cardList.prepend(createCard(newCardData,  { deleteCard, onLike, handleImageClick }));
-  //closePopup(popupAdd);
 });
 
 avatarBtn.addEventListener("click", () => {
@@ -187,6 +179,7 @@ formAvatar.addEventListener("submit", (evt) => {
   updateUserAvatar(avatarUrlInput)
     .then((res) => {
       profileImg.setAttribute("style", `background-image:url(${res.avatar})`);
+      closePopup(popupEditAvatar);
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
@@ -194,8 +187,6 @@ formAvatar.addEventListener("submit", (evt) => {
     .finally(() => {
       formAvatar.querySelector(".popup__button").textContent = "Сохранить";
     });
-  clearValidation(formEdit, validationConfig);
-  closePopup(popupEditAvatar);
 });
 
 enableValidation(validationConfig);

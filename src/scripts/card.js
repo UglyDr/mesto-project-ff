@@ -1,4 +1,4 @@
-import { openPopup } from "./modal.js";
+
 import { putLike, deleteLike, removeCard } from "./api.js";
 
 const cardTemplate = document.querySelector("#card-template").content;
