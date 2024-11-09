@@ -8,7 +8,9 @@ function openPopup(elem) {
 }
 
 function closePopup(elem) {
-  elem.classList.remove("popup_is-opened");
+  setTimeout(() => {
+    elem.classList.remove("popup_is-opened");
+  }, 100);
   document.removeEventListener("keydown", closePopupOnKey);
   document.removeEventListener("click", closePopupOnOverley);
 }
